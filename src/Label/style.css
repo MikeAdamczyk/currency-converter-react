@@ -1,0 +1,26 @@
+.section__label {
+    width: 100%;
+    max-width: 140px;
+    display: inline-block;
+    margin-right: 5px;
+    font-weight: 700;
+}
+
+.section__inputBox{
+    display: inline-block;
+}
+
+.section__input {
+    width: 130px;
+    padding: 7px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.section__select {
+    border: 1px solid #ccc;
+    width: 70px;
+    height: 34px;
+    background-color: white;
+    margin-left: 5px;
+}

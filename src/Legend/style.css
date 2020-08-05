@@ -1,0 +1,8 @@
+.section__legend {
+    padding: 5px 10px;
+    background-color: rgb(31, 119, 31);
+    color: white;
+    border-radius: 10px 10px;
+    text-align: center;
+    box-shadow: 5px 5px 10px -6px #5B5B5B;
+}

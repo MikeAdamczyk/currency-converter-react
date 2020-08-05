@@ -1,25 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from "./Header"
+import Footer from './Footer';
+import Container from './Container';
+import SectionHeader from './SectionHeader';
+import Emoji from './Emoji';
+import Section from "./Section";
+import Form from "./Form";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <Container>
+
+      <Header title="Kalkulator walut" />
+
+      <Section
+        header={
+          <SectionHeader
+            emoji={<Emoji symbol="🔒" label="lock" />}
+            title="Bezpieczna wymiana przez internet!"
+          />
+        }
+
+        form={<Form />}
+      />
+
+      <Footer title="© Copyright by Michał Adamczyk 2020. Wszelkie prawa zastrzeżone!" />
+
+    </Container >
   );
 }
 
