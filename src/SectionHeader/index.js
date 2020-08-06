@@ -4,7 +4,7 @@ import "./style.css";
 const SectionHeader = ({ emoji, title }) => (
 
     <h2 className="section__h2">
-        {emoji} {title}
+        {emoji}{title}
     </h2>
 );
 
