@@ -1,15 +1,36 @@
 import React, { useState } from "react";
 import "./style.css";
-import Legend from "../../../Legend";
-import Label from "../../../Label";
-import Button from "../../../Button";
-import Select from "../../../Select";
+import Legend from "./Legend";
+import Label from "./Label";
+import Button from "./Button";
+import { currencies } from "../../../currencies";
+import Select from "./Label/Select";
 
-const Form = () => {
 
+const Form = ({ result, calculateResult }) => {
+
+    const [sourceAmount, setSourceAmount] = useState("");
+    const [sourceCurrency, setSourceCurrency] = useState("USD");
+
+    const [targetAmount, setTargetAmount] = useState("");
+    const [targetCurrency, setTargetCurrency] = useState(currencies[1].shortName);
+
+    // const handleChange = () => {
+    //     calculateResult(sourceCurrency, sourceAmount, targetCurrency);
+    // };
 
     const onFormSubmit = (event) => {
         event.preventDefault();
+        console.log("dziękujemy za wymianę");
+    };
+
+
+    const onChangeSourceCurrency = ({target}) => {
+        setSourceCurrency(target.value)
+    };
+
+    const onChangeTargetCurrency = ({target}) => {
+        setTargetCurrency(target.value)
     };
 
     return (
@@ -19,27 +40,35 @@ const Form = () => {
                 {<Legend title="Wymiana waluty" />}
 
                 {<Label
-                    value={amountToExchange}
-                    onChange={onInputChange}
+                    value={sourceAmount}
+                    onChange={({ target }) => setSourceAmount(target.value)}
                     title="Chcę wymienić:"
                     name="amountToExchange"
                     min="1.0"
                     step="0.01"
                     required={true}
                     placeholder="Wpisz kwotę"
-                    defaultValue="PLN"
-                    select={<Select value={selectValue} onChange />}
+                    select={
+                        <Select
+                            value={sourceCurrency}
+                            onChange={onChangeSourceCurrency}
+                        />
+                    }
                 />
                 }
 
                 {<Label
-                    value={exchangedAmount}
-                    onChange={onOutputChange}
+                    value={targetAmount}
+                    onChange={({target}) => setTargetAmount(target.value)}
                     title="Otrzymam:"
                     name="exchangedAmount"
                     readonly={true}
-                    defaultValue="USD"
-                    select={<Select value={selectValueExchanged} />}
+                    select={
+                        <Select
+                            value={targetCurrency}
+                            onChange={onChangeTargetCurrency}
+                        />
+                    }
                 />
                 }
 

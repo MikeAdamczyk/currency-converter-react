@@ -1,19 +1,27 @@
 import React from "react";
 import "./style.css";
+import { currencies } from "../../../../../currencies";
 
-const Select = (selectValue, onSelectChange) => (
+const Select = (selectValue, onChange) => (
 
     <select
         className="section__select"
         value={selectValue}
-        onChange={onSelectChange}
+        onChange={onChange}
     >
-        <option>PLN</option>
-        <option>USD</option>
-        <option>EUR</option>
-        <option>CHF</option>
-    </select>
 
+        {currencies.map((currency => (
+
+            <option
+                id={currency.shortName}
+                value={currency.shortName}
+            >
+                {currency.shortName}
+            </option>
+
+        )))};
+
+    </select>
 );
 
 export default Select;
