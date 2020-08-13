@@ -12,19 +12,36 @@ const Form = ({ result, calculateResult }) => {
     const [sourceAmount, setSourceAmount] = useState("");
     const [sourceCurrency, setSourceCurrency] = useState(currencies[0].shortName);
 
-    const [targetAmount, setTargetAmount] = useState(200);
+    const [targetAmount, setTargetAmount] = useState("");
     const [targetCurrency, setTargetCurrency] = useState(currencies[1].shortName);
 
 
-    // const onChangeSourceAmount = ({ target }) => {
-    //     setSourceAmount(target.value);
-    //     calculateResult(sourceCurrency, sourceAmount, targetCurrency);
-    //     setTargetAmount(result.targetAmount);
-    // };
+    const onChange = ({ target }) => {
+
+        console.log(`input wynosi: ${target.value}`);
+        setSourceAmount(target.value);
+        console.log(`sourceAmount wynosi: ${sourceAmount}`);
+
+
+        calculateResult(sourceCurrency, sourceAmount, targetCurrency);
+
+        console.log(`result wynosi: ${result}`);
+        console.log(result);
+
+        const resultCheck = () => {
+            if (result === undefined) {
+                return 0;
+            }
+            return result.targetAmount;
+        };
+
+        console.log(`targetAmount wynosi: ${resultCheck()}`);
+        setTargetAmount(resultCheck());
+        console.log("------------------------------------------------");
+    };
 
     // const onChangeTargetAmount = ({ target }) => {
     //     setTargetAmount(target.value);
-        
     // };
 
     const onChangeSourceCurrency = ({ target }) => {
@@ -37,18 +54,17 @@ const Form = ({ result, calculateResult }) => {
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-
     };
 
     return (
         <form onSubmit={onFormSubmit}>
             <fieldset className="section__fieldset">
 
-                {<Legend title="Wymiana waluty" />}
+                <Legend title="Wymiana waluty" />
 
-                {<Label
+                <Label
                     value={sourceAmount}
-                    onChange={({ target }) => setSourceAmount(target.value)}
+                    onChange={onChange}
                     title="Chcę wymienić:"
                     name="amountToExchange"
                     min="1.0"
@@ -62,11 +78,10 @@ const Form = ({ result, calculateResult }) => {
                         />
                     }
                 />
-                }
 
-                {<Label
+                <Label
                     value={targetAmount}
-                    onChange={({ target }) => setTargetAmount(target.value)}
+                    onChange={onChange}
                     title="Otrzymam:"
                     name="exchangedAmount"
                     readonly={true}
@@ -77,9 +92,8 @@ const Form = ({ result, calculateResult }) => {
                         />
                     }
                 />
-                }
 
-                {<Button title="Kupuję!" />}
+                <Button title="Kupuję!" />
 
             </fieldset>
         </form>
