@@ -10,27 +10,34 @@ import Select from "./Label/Select";
 const Form = ({ result, calculateResult }) => {
 
     const [sourceAmount, setSourceAmount] = useState("");
-    const [sourceCurrency, setSourceCurrency] = useState("USD");
+    const [sourceCurrency, setSourceCurrency] = useState(currencies[0].shortName);
 
-    const [targetAmount, setTargetAmount] = useState("");
+    const [targetAmount, setTargetAmount] = useState(200);
     const [targetCurrency, setTargetCurrency] = useState(currencies[1].shortName);
 
-    // const handleChange = () => {
+
+    // const onChangeSourceAmount = ({ target }) => {
+    //     setSourceAmount(target.value);
     //     calculateResult(sourceCurrency, sourceAmount, targetCurrency);
+    //     setTargetAmount(result.targetAmount);
     // };
 
-    const onFormSubmit = (event) => {
-        event.preventDefault();
-        console.log("dziękujemy za wymianę");
-    };
+    // const onChangeTargetAmount = ({ target }) => {
+    //     setTargetAmount(target.value);
+        
+    // };
 
-
-    const onChangeSourceCurrency = ({target}) => {
+    const onChangeSourceCurrency = ({ target }) => {
         setSourceCurrency(target.value)
     };
 
-    const onChangeTargetCurrency = ({target}) => {
+    const onChangeTargetCurrency = ({ target }) => {
         setTargetCurrency(target.value)
+    };
+
+    const onFormSubmit = (event) => {
+        event.preventDefault();
+
     };
 
     return (
@@ -59,7 +66,7 @@ const Form = ({ result, calculateResult }) => {
 
                 {<Label
                     value={targetAmount}
-                    onChange={({target}) => setTargetAmount(target.value)}
+                    onChange={({ target }) => setTargetAmount(target.value)}
                     title="Otrzymam:"
                     name="exchangedAmount"
                     readonly={true}

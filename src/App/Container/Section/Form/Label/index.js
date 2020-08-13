@@ -1,13 +1,13 @@
 import React from "react";
 import "./style.css";
 
-const Label = ({ title, name, min, step, required, readonly, placeholder, inputValue, onChange, select}) => (
+const Label = ({ title, name, min, step, required, readonly, placeholder, value, onChange, select }) => (
     <p>
         <label>
             <span className="section__label">{title}</span>
             <span className="section__inputBox">
                 <input
-                    value={100}
+                    value={value}
                     onChange={onChange}
                     className="section__input"
                     type="number"
