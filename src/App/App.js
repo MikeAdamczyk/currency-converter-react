@@ -13,14 +13,12 @@ function App() {
   const [result, setResult] = useState();
 
   const calculateResult = (sourceCurrency, sourceAmount, targetCurrency) => {
-    console.log("**************");
-    console.log(`sourceCurrency wynosi: ${sourceCurrency}`);
-    console.log(`sourceAmount wynosi: ${sourceAmount}`);
-    console.log(`targetCurrency wynosi: ${targetCurrency}`);
 
-    const rate = currencies.find(({ shortName }) => shortName === targetCurrency).rate;
+    const rate = currencies.find(({ shortName }) => shortName === sourceCurrency).rate;
+    const targetCurrencyRate = currencies.find(({ shortName }) => shortName === targetCurrency).rate;
 
     console.log(rate);
+    console.log(targetCurrencyRate);
 
     let plnValue = (+sourceAmount * rate).toFixed(2);
 
@@ -28,7 +26,7 @@ function App() {
       {
         sourceAmount: +sourceAmount,
         sourceCurrency: sourceCurrency,
-        targetAmount: sourceCurrency === "PLN" ? plnValue : plnValue / rate,
+        targetAmount: targetCurrency === "PLN" ? plnValue : (plnValue / targetCurrencyRate).toFixed(2),
         targetCurrency,
       }
     );
