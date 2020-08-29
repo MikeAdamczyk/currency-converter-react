@@ -5,14 +5,14 @@ export const currencies = [
     },
     {
         shortName: "USD",
-        rate: 3.94,
+        rate: 3.70,
     },
     {
         shortName: "EUR",
-        rate: 4.45,
+        rate: 4.40,
     },
     {
         shortName: "CHF",
-        rate: 4.15,
+        rate: 4.11,
     },
 ];
