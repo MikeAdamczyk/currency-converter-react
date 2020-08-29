@@ -1,37 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from "./Container/Header"
 import Footer from './Container/Footer';
 import Container from './Container';
 import SectionHeader from './Container/Section/SectionHeader';
 import Emoji from './Container/Section/SectionHeader/Emoji';
 import Section from "./Container/Section";
-import Form from "./Container/Section/Form";
-import { currencies } from './currencies';
+import Form from "./Container/Section/Form"
 
 function App() {
-
-  const [result, setResult] = useState();
-
-  const calculateResult = (sourceCurrency, sourceAmount, targetCurrency) => {
-
-    const rate = currencies.find(({ shortName }) => shortName === sourceCurrency).rate;
-    const targetCurrencyRate = currencies.find(({ shortName }) => shortName === targetCurrency).rate;
-
-    console.log(rate);
-    console.log(targetCurrencyRate);
-
-    let plnValue = (+sourceAmount * rate).toFixed(2);
-
-    setResult(
-      {
-        sourceAmount: +sourceAmount,
-        sourceCurrency: sourceCurrency,
-        targetAmount: targetCurrency === "PLN" ? plnValue : (plnValue / targetCurrencyRate).toFixed(2),
-        targetCurrency,
-      }
-    );
-  };
-
 
   return (
 
@@ -47,12 +23,7 @@ function App() {
           />
         }
 
-        form={
-          <Form
-            result={result}
-            calculateResult={calculateResult}
-          />
-        }
+        form={<Form />}
       />
 
       <Footer title="© Copyright by Michał Adamczyk 2020. Wszelkie prawa zastrzeżone!" />

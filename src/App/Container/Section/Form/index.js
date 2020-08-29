@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import Legend from "./Legend";
 import Label from "./Label";
@@ -7,53 +7,53 @@ import { currencies } from "../../../currencies";
 import Select from "./Label/Select";
 
 
-const Form = ({ result, calculateResult }) => {
+const Form = () => {
 
     const [sourceAmount, setSourceAmount] = useState("");
     const [sourceCurrency, setSourceCurrency] = useState(currencies[0].shortName);
 
-    const [targetAmount, setTargetAmount] = useState("");
+    const [targetAmount, setTargetAmount] = useState(200);
     const [targetCurrency, setTargetCurrency] = useState(currencies[1].shortName);
 
+    const sourceCurrencyRate = currencies.find(({ shortName }) => shortName === sourceCurrency).rate;
+    const targetCurrencyRate = currencies.find(({ shortName }) => shortName === targetCurrency).rate;
 
-    const onChange = ({ target }) => {
-
-        console.log(`input wynosi: ${target.value}`);
+    const onInputChange = ({ target }) => {
         setSourceAmount(target.value);
-        console.log(`sourceAmount wynosi: ${sourceAmount}`);
-
-
-        calculateResult(sourceCurrency, sourceAmount, targetCurrency);
-
-        console.log(`result wynosi: ${result}`);
-        console.log(result);
-
-        const resultCheck = () => {
-            if (result === undefined) {
-                return 0;
-            }
-            return result.targetAmount;
-        };
-
-        console.log(`targetAmount wynosi: ${resultCheck()}`);
-        setTargetAmount(resultCheck());
-        console.log("------------------------------------------------");
+        setTargetAmount(((sourceAmount * sourceCurrencyRate) / targetCurrencyRate).toFixed(2));
     };
 
-    // const onChangeTargetAmount = ({ target }) => {
-    //     setTargetAmount(target.value);
-    // };
+    const onOutputChange = () => {
+       // setTargetAmount("");
+    };
 
-    const onChangeSourceCurrency = ({ target }) => {
+
+    useEffect(() => {
+
+        const calculateResult = () => {
+            if (sourceAmount === "") {
+                return "";
+            }
+            return ((sourceAmount * sourceCurrencyRate) / targetCurrencyRate).toFixed(2);
+        };
+
+        setTargetAmount(calculateResult);
+
+    }, [sourceAmount, sourceCurrencyRate, targetCurrencyRate]);
+
+
+    const onSourceCurrencyChange = ({ target }) => {
         setSourceCurrency(target.value)
     };
 
-    const onChangeTargetCurrency = ({ target }) => {
+    const onTargetCurrencyChange = ({ target }) => {
         setTargetCurrency(target.value)
     };
 
+
     const onFormSubmit = (event) => {
         event.preventDefault();
+        
     };
 
     return (
@@ -64,7 +64,7 @@ const Form = ({ result, calculateResult }) => {
 
                 <Label
                     value={sourceAmount}
-                    onChange={onChange}
+                    onChange={onInputChange}
                     title="Chcę wymienić:"
                     name="amountToExchange"
                     min="1.0"
@@ -74,21 +74,21 @@ const Form = ({ result, calculateResult }) => {
                     select={
                         <Select
                             value={sourceCurrency}
-                            onChange={onChangeSourceCurrency}
+                            onChange={onSourceCurrencyChange}
                         />
                     }
                 />
 
                 <Label
                     value={targetAmount}
-                    onChange={onChange}
+                    onChange={onOutputChange}
                     title="Otrzymam:"
                     name="exchangedAmount"
                     readonly={true}
                     select={
                         <Select
                             value={targetCurrency}
-                            onChange={onChangeTargetCurrency}
+                            onChange={onTargetCurrencyChange}
                         />
                     }
                 />
