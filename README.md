@@ -1,5 +1,5 @@
 ## Demo
-[Currency Converter (GitHub Pages)](https://mikeadamczyk.github.io/currency-converter/)
+[Currency Converter (GitHub Pages)](https://mikeadamczyk.github.io/currency-converter-react/)
 
 
 ## Technology Stack
