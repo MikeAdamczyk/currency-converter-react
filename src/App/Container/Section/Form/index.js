@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./style.css";
 import Legend from "./Legend";
 import Label from "./Label";
@@ -12,8 +12,6 @@ const Form = () => {
 
     const [sourceAmount, setSourceAmount] = useState("");
     const [sourceCurrency, setSourceCurrency] = useState(currencies[0].shortName);
-
-    const [targetAmount, setTargetAmount] = useState(200);
     const [targetCurrency, setTargetCurrency] = useState(currencies[1].shortName);
 
     const sourceCurrencyRate = currencies.find(({ shortName }) => shortName === sourceCurrency).rate;
@@ -23,22 +21,7 @@ const Form = () => {
 
     const onInputChange = ({ target }) => {
         setSourceAmount(target.value);
-        setTargetAmount(((sourceAmount * sourceCurrencyRate) / targetCurrencyRate).toFixed(2));
     };
-
-    useEffect(() => {
-
-        const calculateResult = () => {
-            if (sourceAmount === "") {
-                return "";
-            }
-            return ((sourceAmount * sourceCurrencyRate) / targetCurrencyRate).toFixed(2);
-        };
-
-        setTargetAmount(calculateResult);
-
-    }, [sourceAmount, sourceCurrencyRate, targetCurrencyRate]);
-
 
     const onSourceCurrencyChange = ({ target }) => {
         setSourceCurrency(target.value)
@@ -47,6 +30,18 @@ const Form = () => {
     const onTargetCurrencyChange = ({ target }) => {
         setTargetCurrency(target.value)
     };
+    
+    let targetAmount = "";
+
+    const calculateResult = () => {
+
+        if (sourceAmount === "") {
+            return;
+        }
+        targetAmount = ((sourceAmount * sourceCurrencyRate) / targetCurrencyRate).toFixed(2);
+    };
+
+    calculateResult();
 
     const createMessage = () => {
         const rate = (sourceAmount / targetAmount).toFixed(2);
