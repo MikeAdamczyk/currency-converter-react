@@ -1,12 +1,10 @@
 import React from "react";
 import "./style.css";
 
-const Message = ({message}) => (
+const Message = ({ message }) => (
 
     <span className="section__message">
-        <>
         {message}
-        </>
     </span>
 
 );
