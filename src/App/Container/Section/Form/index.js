@@ -5,7 +5,8 @@ import Label from "./Label";
 import Button from "./Button";
 import { currencies } from "../../../currencies";
 import Select from "./Label/Select";
-
+import Message from "./Message";
+import parse from 'html-react-parser';
 
 const Form = () => {
 
@@ -18,15 +19,12 @@ const Form = () => {
     const sourceCurrencyRate = currencies.find(({ shortName }) => shortName === sourceCurrency).rate;
     const targetCurrencyRate = currencies.find(({ shortName }) => shortName === targetCurrency).rate;
 
+    const [message, setMessage] = useState("")
+
     const onInputChange = ({ target }) => {
         setSourceAmount(target.value);
         setTargetAmount(((sourceAmount * sourceCurrencyRate) / targetCurrencyRate).toFixed(2));
     };
-
-    const onOutputChange = () => {
-       // setTargetAmount("");
-    };
-
 
     useEffect(() => {
 
@@ -50,10 +48,19 @@ const Form = () => {
         setTargetCurrency(target.value)
     };
 
+    const createMessage = () => {
+        const rate = (sourceAmount / targetAmount).toFixed(2);
+
+        let result = parse(`Gratulacje! Wymieniłeś <strong>${sourceAmount}&nbsp;${sourceCurrency}</strong> 
+        na <strong>${targetAmount}&nbsp;${targetCurrency}</strong> 
+        po kursie <strong>${rate}</strong>!`)
+
+        return result;
+    };
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        
+        setMessage(createMessage);
     };
 
     return (
@@ -81,7 +88,7 @@ const Form = () => {
 
                 <Label
                     value={targetAmount}
-                    onChange={onOutputChange}
+                    onChange={onInputChange}
                     title="Otrzymam:"
                     name="exchangedAmount"
                     readonly={true}
@@ -93,7 +100,13 @@ const Form = () => {
                     }
                 />
 
-                <Button title="Kupuję!" />
+                <p>
+                    <Button title="Kupuję!" />
+
+                    <Message
+                        message={message}
+                    />
+                </p>
 
             </fieldset>
         </form>

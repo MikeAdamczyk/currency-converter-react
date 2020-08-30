@@ -18,10 +18,3 @@
 .section__button:active {
     background-color: rgb(230, 187, 0)
 }
-
-.section__message {
-    color: rgb(31, 119, 31);
-    margin-left: 15px;
-    padding: 10px;
-    font-size: 18px;
-}
