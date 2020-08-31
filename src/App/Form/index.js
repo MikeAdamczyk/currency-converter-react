@@ -4,7 +4,7 @@ import Legend from "./Legend";
 import Label from "./Label";
 import Button from "./Button";
 import { currencies } from "../../../currencies";
-import Select from "./Label/Select";
+import Select from "./Select";
 import Message from "./Message";
 import parse from 'html-react-parser';
 
