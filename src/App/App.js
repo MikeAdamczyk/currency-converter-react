@@ -2,10 +2,10 @@ import React from 'react';
 import Header from "./Header"
 import Footer from './Footer';
 import Container from './Container';
-import SectionHeader from './Container/Section/SectionHeader';
-import Emoji from './Container/Section/SectionHeader/Emoji';
-import Section from "./Container/Section";
-import Form from "./Container/Section/Form"
+import SectionHeader from './SectionHeader';
+import Emoji from './Emoji';
+import Section from "./Section";
+import Form from "./Form"
 
 function App() {
 

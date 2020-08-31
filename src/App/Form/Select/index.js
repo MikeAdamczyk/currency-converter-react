@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import { currencies } from "../../../../../currencies";
+import { currencies } from "../../currencies";
 
 const Select = ({value, onChange}) => (
 
