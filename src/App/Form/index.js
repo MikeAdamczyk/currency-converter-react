@@ -7,6 +7,7 @@ import { currencies } from "../currencies";
 import Select from "./Select";
 import Message from "./Message";
 import parse from 'html-react-parser';
+import Clock from "./Clock";
 
 const Form = () => {
 
@@ -58,12 +59,20 @@ const Form = () => {
         setMessage(createMessage);
     };
 
+    const [date, setDate] = useState(new Date().toLocaleString("pl-PL", { weekday: "long", day: "numeric", month: "long", year: "numeric", hour: "numeric", minute: "numeric", second: "numeric" }));
+
+    setInterval(() => {
+        setDate(new Date().toLocaleString("pl-PL", { weekday: "long", day: "numeric", month: "long", year: "numeric", hour: "numeric", minute: "numeric", second: "numeric" }))
+    }, 1000);
+
+
     return (
         <form onSubmit={onFormSubmit}>
             <fieldset className="section__fieldset">
 
                 <Legend title="Wymiana waluty" />
 
+                <Clock date={date} />
                 <Label
                     value={sourceAmount}
                     onChange={onInputChange}
