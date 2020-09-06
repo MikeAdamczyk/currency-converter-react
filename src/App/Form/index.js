@@ -58,21 +58,14 @@ const Form = () => {
         event.preventDefault();
         setMessage(createMessage);
     };
-
-    const [date, setDate] = useState(new Date().toLocaleString("pl-PL", { weekday: "long", day: "numeric", month: "long", year: "numeric", hour: "numeric", minute: "numeric", second: "numeric" }));
-
-    setInterval(() => {
-        setDate(new Date().toLocaleString("pl-PL", { weekday: "long", day: "numeric", month: "long", year: "numeric", hour: "numeric", minute: "numeric", second: "numeric" }))
-    }, 1000);
-
-
+    
     return (
         <form onSubmit={onFormSubmit}>
             <fieldset className="section__fieldset">
 
                 <Legend title="Wymiana waluty" />
 
-                <Clock date={date} />
+                <Clock />
                 <Label
                     value={sourceAmount}
                     onChange={onInputChange}

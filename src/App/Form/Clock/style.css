@@ -5,6 +5,7 @@
     margin-bottom: -15px;
     margin-right: 10px;
     font-weight: bold;
+    color: #666;
 }
 
 .section__clock {
@@ -12,4 +13,5 @@
     text-align: right;
     font-size: 14px;
     margin-right: 10px;
+    color: #666;
 }
