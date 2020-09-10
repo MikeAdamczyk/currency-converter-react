@@ -32,17 +32,10 @@ const Form = () => {
         setTargetCurrency(target.value)
     };
 
-    let targetAmount = "";
+    const targetAmount = sourceAmount === ""
+        ? ""
+        : (sourceAmount * sourceCurrencyRate / targetCurrencyRate).toFixed(2);
 
-    const calculateResult = () => {
-
-        if (sourceAmount === "") {
-            return;
-        }
-        targetAmount = ((sourceAmount * sourceCurrencyRate) / targetCurrencyRate).toFixed(2);
-    };
-
-    calculateResult();
 
     const createMessage = () => {
         const rate = (sourceAmount / targetAmount).toFixed(2);
@@ -58,7 +51,7 @@ const Form = () => {
         event.preventDefault();
         setMessage(createMessage);
     };
-    
+
     return (
         <form onSubmit={onFormSubmit}>
             <fieldset className="section__fieldset">
