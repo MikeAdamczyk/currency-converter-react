@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./style.css";
 import Legend from "./Legend";
 import Label from "./Label";
 import Button from "./Button";
@@ -8,6 +7,7 @@ import Select from "./Select";
 import Message from "./Message";
 import parse from 'html-react-parser';
 import Clock from "./Clock";
+import { Fieldset } from "./styled";
 
 const Form = () => {
 
@@ -54,7 +54,7 @@ const Form = () => {
 
     return (
         <form onSubmit={onFormSubmit}>
-            <fieldset className="section__fieldset">
+            <Fieldset>
 
                 <Legend title="Wymiana waluty" />
 
@@ -98,7 +98,7 @@ const Form = () => {
                     />
                 </p>
 
-            </fieldset>
+            </Fieldset>
         </form>
     )
 };

@@ -1,11 +1,10 @@
 import React from "react";
-import "./style.css";
+import { Header } from "./styled";
 
 const SectionHeader = ({ emoji, title }) => (
-
-    <h2 className="section__h2">
+    <Header>
         {emoji}{title}
-    </h2>
+    </Header>
 );
 
 export default SectionHeader;

@@ -1,10 +1,10 @@
 import React from "react";
-import "./style.css";
+import { LegendInfo } from "./styled";
 
-const Legend = ({title}) => (
-    <legend className="section__legend">
+const Legend = ({ title }) => (
+    <LegendInfo>
         {title}
-    </legend>
+    </LegendInfo>
 );
 
 export default Legend;

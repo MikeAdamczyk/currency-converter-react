@@ -1,15 +1,17 @@
 import React from "react";
-import "./style.css";
+import { LabelTitle, InputBox, Input } from "./styled";
 
 const Label = ({ title, name, min, step, required, readonly, placeholder, value, onChange, select }) => (
     <p>
         <label>
-            <span className="section__label">{title}</span>
-            <span className="section__inputBox">
-                <input
+            <LabelTitle>
+                {title}
+            </LabelTitle>
+
+            <InputBox>
+                <Input
                     value={value}
                     onChange={onChange}
-                    className="section__input"
                     type="number"
                     name={name}
                     min={min}
@@ -19,7 +21,7 @@ const Label = ({ title, name, min, step, required, readonly, placeholder, value,
                     readOnly={readonly}
                 />
                 {select}
-            </span>
+            </InputBox>
         </label>
     </p>
 );

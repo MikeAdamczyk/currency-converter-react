@@ -6,31 +6,32 @@ import SectionHeader from './SectionHeader';
 import Emoji from './Emoji';
 import Section from "./Section";
 import Form from "./Form"
+import { ThemeProvider } from "styled-components";
+import { theme } from './theme';
 
 function App() {
-
   return (
+    <ThemeProvider theme={theme}>
+      <Container>
 
-    <Container>
+        <Header title="Kalkulator walut" />
 
-      <Header title="Kalkulator walut" />
+        <Section
+          header={
+            <SectionHeader
+              emoji={<Emoji symbol="🔒" label="lock" />}
+              title="Bezpieczna wymiana przez internet!"
+            />
+          }
+          form={<Form />}
+        />
 
-      <Section
-        header={
-          <SectionHeader
-            emoji={<Emoji symbol="🔒" label="lock" />}
-            title="Bezpieczna wymiana przez internet!"
-          />
-        }
+        <Footer title="© Copyright by Michał Adamczyk 2020. Wszelkie prawa zastrzeżone!" />
 
-        form={<Form />}
-      />
+      </Container >
+    </ThemeProvider>
 
-      <Footer title="© Copyright by Michał Adamczyk 2020. Wszelkie prawa zastrzeżone!" />
-
-    </Container >
   )
-
 };
 
 export default App;

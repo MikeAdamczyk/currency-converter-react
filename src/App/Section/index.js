@@ -1,7 +1,7 @@
 import React from "react";
 
 const Section = ({ header, form }) => (
-    <section className="section">
+    <section>
         {header}
         {form}
     </section>

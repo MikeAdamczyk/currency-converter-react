@@ -1,6 +1,8 @@
-.footer{
+import styled from "styled-components";
+
+export const FooterInfo = styled.footer`
     color: rgba(158, 158, 158, 0.767);
     font-size: 14px;
     text-align: center;
     margin: 10px;
-}
+`;

@@ -1,11 +1,10 @@
 import React from "react";
-import "./style.css";
 import { currencies } from "../../currencies";
+import { SelectCurrency } from "./styled";
 
-const Select = ({value, onChange}) => (
+const Select = ({ value, onChange }) => (
 
-    <select
-        className="section__select"
+    <SelectCurrency
         value={value}
         onChange={onChange}
     >
@@ -21,7 +20,7 @@ const Select = ({value, onChange}) => (
 
         )))};
 
-    </select>
+    </SelectCurrency>
 );
 
 export default Select;

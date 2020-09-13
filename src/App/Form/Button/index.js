@@ -1,10 +1,10 @@
 import React from "react";
-import "./style.css";
+import { ButtonElement } from "./styled";
 
 const Button = ({ title }) => (
-
-    <button className="section__button">{title}</button>
-
+    <ButtonElement>
+        {title}
+    </ButtonElement>
 );
 
 export default Button;

@@ -1,12 +1,10 @@
 import React from "react";
-import "./style.css";
+import { MessageInfo } from "./styled";
 
 const Message = ({ message }) => (
-
-    <span className="section__message">
+    <MessageInfo>
         {message}
-    </span>
-
+    </MessageInfo>
 );
 
 export default Message;
