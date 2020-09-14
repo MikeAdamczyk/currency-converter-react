@@ -30,7 +30,6 @@ function App() {
 
       </Container >
     </ThemeProvider>
-
   )
 };
 
