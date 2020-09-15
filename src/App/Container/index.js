@@ -1,10 +1,10 @@
 import React from "react";
-import { Div } from "./styled";
+import { Wrapper } from "./styled";
 
 const Container = ({ children }) => (
-    <Div>
+    <Wrapper>
         {children}
-    </Div>
+    </Wrapper>
 );
 
 export default Container;

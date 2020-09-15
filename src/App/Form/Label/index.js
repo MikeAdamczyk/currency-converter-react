@@ -1,5 +1,5 @@
 import React from "react";
-import { LabelTitle, InputBox, Input } from "./styled";
+import { LabelTitle, Wrapper, Input } from "./styled";
 
 const Label = ({ title, name, min, step, required, readonly, placeholder, value, onChange, select }) => (
     <p>
@@ -8,7 +8,7 @@ const Label = ({ title, name, min, step, required, readonly, placeholder, value,
                 {title}
             </LabelTitle>
 
-            <InputBox>
+            <Wrapper>
                 <Input
                     value={value}
                     onChange={onChange}
@@ -21,7 +21,7 @@ const Label = ({ title, name, min, step, required, readonly, placeholder, value,
                     readOnly={readonly}
                 />
                 {select}
-            </InputBox>
+            </Wrapper>
         </label>
     </p>
 );

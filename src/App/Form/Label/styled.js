@@ -8,7 +8,7 @@ export const LabelTitle = styled.span`
     font-weight: 700;
 `;
 
-export const InputBox = styled.span`
+export const Wrapper = styled.span`
     display: inline-block;
 `;
 

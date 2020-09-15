@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MessageInfo = styled.span`
+export const StyledMessage = styled.span`
     color: ${({theme}) => theme.primaryColor};
     margin-left: 15px;
     padding: 10px;

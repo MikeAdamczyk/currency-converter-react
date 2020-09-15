@@ -1,10 +1,10 @@
 import React from "react";
-import { HeaderInfo } from "./styled";
+import { Wrapper } from "./styled";
 
 const Header = ({ title }) => (
-    <HeaderInfo>
+    <Wrapper>
         <h1>{title}</h1>
-    </HeaderInfo>
+    </Wrapper>
 );
 
 export default Header;

@@ -1,10 +1,10 @@
 import React from "react";
-import { MessageInfo } from "./styled";
+import { StyledMessage } from "./styled";
 
 const Message = ({ message }) => (
-    <MessageInfo>
+    <StyledMessage>
         {message}
-    </MessageInfo>
+    </StyledMessage>
 );
 
 export default Message;

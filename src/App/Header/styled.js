@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const HeaderInfo = styled.header`
+export const Wrapper = styled.header`
     margin: 20px auto;
     text-align: center;
     font-size: 20px;
