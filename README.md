@@ -1,24 +1,22 @@
 ## Demo
 [Currency Converter (GitHub Pages)](https://mikeadamczyk.github.io/currency-converter-react/)
 
+## Preview
+![instruction](./public/img/instruction.gif)
+
 
 ## Technology Stack
 - **HTML**
-- **CSS**
 - **JavaScript**
 - **React.js**
 - **create-react-app**
-
-## Methodologies
-- **BEM**
-
+- **custom hooks**
+- **styled-components**
 
 ## Description
 
 Simple Currency Converter **helps you to calculate the best exchange rate** for your currency. It's light, simple and fast. Enjoy!
 
-## Preview
-![instruction](./public/img/instruction.gif)
 
 ## Contact
 hello@codeman.it
