@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import img from "./App/img/MoneyBackground.jpg";
 
 export const GlobalStyle = createGlobalStyle`
     html {
@@ -16,7 +17,7 @@ export const GlobalStyle = createGlobalStyle`
         color: rgb(49, 49, 49);
         margin: 20px auto;
         background-color: rgba(245, 245, 245, 0.521);
-        background-image: url("./App/img/MoneyBackground.jpg");
+        background-image: url(${img});
         background-blend-mode: soft-light;
     }
 `;
