@@ -12,15 +12,14 @@ import { useRatesData } from "./useRatesData";
 const Form = () => {
 
     const ratesData = useRatesData();
-    console.log(ratesData);
 
     const [sourceAmount, setSourceAmount] = useState("");
 
     const [sourceCurrency, setSourceCurrency] = useState("PLN");
     const [targetCurrency, setTargetCurrency] = useState("USD");
 
-    const sourceCurrencyRate = 1;
-    const targetCurrencyRate = 0.5;
+    const sourceCurrencyRate = ratesData.rates[sourceCurrency];
+    const targetCurrencyRate = ratesData.rates[targetCurrency];
 
     const [message, setMessage] = useState("")
 
