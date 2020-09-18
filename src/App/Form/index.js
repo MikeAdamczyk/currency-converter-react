@@ -12,7 +12,8 @@ import { useRatesData } from "./useRatesData";
 const Form = () => {
 
     const ratesData = useRatesData();
-
+    console.log(ratesData);
+    
     const [sourceAmount, setSourceAmount] = useState("");
 
     const [sourceCurrency, setSourceCurrency] = useState("PLN");
@@ -91,6 +92,7 @@ const Form = () => {
                                             <Select
                                                 value={sourceCurrency}
                                                 onChange={onSourceCurrencyChange}
+                                                ratesData={ratesData}
                                             />
                                         }
                                     />
@@ -105,6 +107,7 @@ const Form = () => {
                                             <Select
                                                 value={targetCurrency}
                                                 onChange={onTargetCurrencyChange}
+                                                ratesData={ratesData}
                                             />
                                         }
                                     />

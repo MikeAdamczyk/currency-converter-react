@@ -1,16 +1,14 @@
 import React from "react";
 import { SelectCurrency } from "./styled";
-import { useRatesData } from "../useRatesData";
 
-const Select = ({ value, onChange }) => {
-
-    const ratesData = useRatesData();
+const Select = ({ value, onChange, ratesData }) => {
 
     return (
 
         <SelectCurrency
             value={value}
             onChange={onChange}
+            ratesData={ratesData}
         >
 
             {Object.keys(ratesData.rates).map((currency => (
