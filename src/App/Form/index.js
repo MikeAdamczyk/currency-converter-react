@@ -2,21 +2,25 @@ import React, { useState } from "react";
 import Legend from "./Legend";
 import Label from "./Label";
 import Button from "./Button";
-import { currencies } from "../currencies";
 import Select from "./Select";
 import Message from "./Message";
 import parse from 'html-react-parser';
 import Clock from "./Clock";
-import { Fieldset } from "./styled";
+import { Fieldset, Loading, Failure } from "./styled";
+import { useRatesData } from "./useRatesData";
 
 const Form = () => {
 
-    const [sourceAmount, setSourceAmount] = useState("");
-    const [sourceCurrency, setSourceCurrency] = useState(currencies[0].shortName);
-    const [targetCurrency, setTargetCurrency] = useState(currencies[1].shortName);
+    const ratesData = useRatesData();
+    console.log(ratesData);
 
-    const sourceCurrencyRate = currencies.find(({ shortName }) => shortName === sourceCurrency).rate;
-    const targetCurrencyRate = currencies.find(({ shortName }) => shortName === targetCurrency).rate;
+    const [sourceAmount, setSourceAmount] = useState("");
+
+    const [sourceCurrency, setSourceCurrency] = useState("PLN");
+    const [targetCurrency, setTargetCurrency] = useState("USD");
+
+    const sourceCurrencyRate = 1;
+    const targetCurrencyRate = 0.5;
 
     const [message, setMessage] = useState("")
 
@@ -41,7 +45,7 @@ const Form = () => {
         const rate = (sourceAmount / targetAmount).toFixed(2);
 
         let result = parse(`Gratulacje! Wymieniłeś <strong>${sourceAmount}&nbsp;${sourceCurrency}</strong> 
-        na <strong>${targetAmount}&nbsp;${targetCurrency}</strong> 
+        na <strong>${targetAmount}&nbsp;${targetCurrency}</strong>
         po kursie <strong>${rate}</strong>!`)
 
         return result;
@@ -50,6 +54,7 @@ const Form = () => {
     const onFormSubmit = (event) => {
         event.preventDefault();
         setMessage(createMessage);
+        console.log(ratesData);
     };
 
     return (
@@ -58,46 +63,64 @@ const Form = () => {
 
                 <Legend title="Wymiana waluty" />
 
-                <Clock />
-                <Label
-                    value={sourceAmount}
-                    onChange={onInputChange}
-                    title="Chcę wymienić:"
-                    name="amountToExchange"
-                    min="1.0"
-                    step="0.01"
-                    required={true}
-                    placeholder="Wpisz kwotę"
-                    select={
-                        <Select
-                            value={sourceCurrency}
-                            onChange={onSourceCurrencyChange}
-                        />
-                    }
-                />
+                {ratesData.state === "loading"
+                    ? (
+                        <Loading>
+                            Zaczekaj chwilkę...<br />
+                            Ładuję kursy walut z Europejskiego Banku Centralnego.
+                        </Loading>
+                    )
+                    : (
+                        ratesData.state === "error" ? (
+                            <Failure>
+                                Hmm... Coś poszło nie tak. <br />
+                                Sprawdź, czy masz połączenie z internetem i/lub spróbuj jeszcze raz za chwilę!
+                            </Failure>
+                        ) : (
+                                <>
+                                    <Clock />
+                                    <Label
+                                        value={sourceAmount}
+                                        onChange={onInputChange}
+                                        title="Chcę wymienić:"
+                                        name="amountToExchange"
+                                        min="1.0"
+                                        step="0.01"
+                                        required={true}
+                                        placeholder="Wpisz kwotę"
+                                        select={
+                                            <Select
+                                                value={sourceCurrency}
+                                                onChange={onSourceCurrencyChange}
+                                            />
+                                        }
+                                    />
 
-                <Label
-                    value={targetAmount}
-                    onChange={onInputChange}
-                    title="Otrzymam:"
-                    name="exchangedAmount"
-                    readonly={true}
-                    select={
-                        <Select
-                            value={targetCurrency}
-                            onChange={onTargetCurrencyChange}
-                        />
-                    }
-                />
+                                    <Label
+                                        value={targetAmount}
+                                        onChange={onInputChange}
+                                        title="Otrzymam:"
+                                        name="exchangedAmount"
+                                        readonly={true}
+                                        select={
+                                            <Select
+                                                value={targetCurrency}
+                                                onChange={onTargetCurrencyChange}
+                                            />
+                                        }
+                                    />
 
-                <p>
-                    <Button title="Kupuję!" />
+                                    <p>
+                                        <Button title="Kupuję!" />
 
-                    <Message
-                        message={message}
-                    />
-                </p>
-
+                                        <Message
+                                            message={message}
+                                        />
+                                    </p>
+                                </>
+                            )
+                    )
+                }
             </Fieldset>
         </form>
     )

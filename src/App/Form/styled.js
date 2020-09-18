@@ -15,3 +15,11 @@ export const Fieldset = styled.fieldset`
     background-color: rgba(235, 235, 235, 0.700);
     box-shadow: 5px 5px 10px -6px #5B5B5B;
 `;
+
+export const Loading = styled.p`
+    color: ${({ theme }) => theme.primaryColor};
+`;
+
+export const Failure = styled.p`
+    color: "red";
+`;

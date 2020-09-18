@@ -1,26 +1,31 @@
 import React from "react";
-import { currencies } from "../../currencies";
 import { SelectCurrency } from "./styled";
+import { useRatesData } from "../useRatesData";
 
-const Select = ({ value, onChange }) => (
+const Select = ({ value, onChange }) => {
 
-    <SelectCurrency
-        value={value}
-        onChange={onChange}
-    >
+    const ratesData = useRatesData();
 
-        {currencies.map((currency => (
+    return (
 
-            <option
-                key={currency.shortName}
-                value={currency.shortName}
-            >
-                {currency.shortName}
-            </option>
+        <SelectCurrency
+            value={value}
+            onChange={onChange}
+        >
 
-        )))};
+            {Object.keys(ratesData.rates).map((currency => (
 
-    </SelectCurrency>
-);
+                <option
+                    key={currency}
+                    value={currency}
+                >
+                    {currency}
+                </option>
+
+            )))};
+
+        </SelectCurrency>
+    )
+};
 
 export default Select;
