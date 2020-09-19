@@ -10,22 +10,28 @@ import { Fieldset, Loading, Failure } from "./styled";
 import { useRatesData } from "./useRatesData";
 
 const Form = () => {
-
     const ratesData = useRatesData();
-    console.log(ratesData);
-    
     const [sourceAmount, setSourceAmount] = useState("");
 
     const [sourceCurrency, setSourceCurrency] = useState("PLN");
     const [targetCurrency, setTargetCurrency] = useState("USD");
 
-    const sourceCurrencyRate = ratesData.rates[sourceCurrency];
-    const targetCurrencyRate = ratesData.rates[targetCurrency];
+    const [sourceCurrencyRate, setSourceCurrencyRate] = useState(0);
+    const [targetCurrencyRate, setTargetCurrencyRate] = useState(0);
+
+    console.log(sourceCurrencyRate);
+    console.log(targetCurrencyRate);
+
+    const targetAmount = sourceAmount === ""
+        ? ""
+        : (sourceAmount / sourceCurrencyRate * targetCurrencyRate).toFixed(2);
 
     const [message, setMessage] = useState("")
 
     const onInputChange = ({ target }) => {
         setSourceAmount(target.value);
+        setSourceCurrencyRate(ratesData.rates[sourceCurrency]);
+        setTargetCurrencyRate(ratesData.rates[targetCurrency]);
     };
 
     const onSourceCurrencyChange = ({ target }) => {
@@ -36,15 +42,10 @@ const Form = () => {
         setTargetCurrency(target.value)
     };
 
-    const targetAmount = sourceAmount === ""
-        ? ""
-        : (sourceAmount * sourceCurrencyRate / targetCurrencyRate).toFixed(2);
-
-
     const createMessage = () => {
         const rate = (sourceAmount / targetAmount).toFixed(2);
 
-        let result = parse(`Gratulacje! Wymieniłeś <strong>${sourceAmount}&nbsp;${sourceCurrency}</strong> 
+        let result = parse(`Gratulacje! Wymieniłeś <strong>${sourceAmount}&nbsp;${sourceCurrency}</strong>
         na <strong>${targetAmount}&nbsp;${targetCurrency}</strong>
         po kursie <strong>${rate}</strong>!`)
 
@@ -54,7 +55,6 @@ const Form = () => {
     const onFormSubmit = (event) => {
         event.preventDefault();
         setMessage(createMessage);
-        console.log(ratesData);
     };
 
     return (
