@@ -35,11 +35,13 @@ const Form = () => {
     };
 
     const onSourceCurrencyChange = ({ target }) => {
-        setSourceCurrency(target.value)
+        setSourceCurrency(target.value);
+        setSourceCurrencyRate(ratesData.rates[sourceCurrency]);
     };
 
     const onTargetCurrencyChange = ({ target }) => {
-        setTargetCurrency(target.value)
+        setTargetCurrency(target.value);
+        setTargetCurrencyRate(ratesData.rates[targetCurrency]);
     };
 
     const createMessage = () => {
