@@ -10,6 +10,7 @@ import { Fieldset, Loading, Failure } from "./styled";
 import { useRatesData } from "./useRatesData";
 
 const Form = () => {
+
     const ratesData = useRatesData();
     const [sourceAmount, setSourceAmount] = useState("");
 
@@ -19,14 +20,11 @@ const Form = () => {
     const [sourceCurrencyRate, setSourceCurrencyRate] = useState(0);
     const [targetCurrencyRate, setTargetCurrencyRate] = useState(0);
 
-    console.log(sourceCurrencyRate);
-    console.log(targetCurrencyRate);
-
-    const targetAmount = sourceAmount === ""
+    const targetAmount = (sourceAmount) === ""
         ? ""
         : (sourceAmount / sourceCurrencyRate * targetCurrencyRate).toFixed(2);
 
-    const [message, setMessage] = useState("")
+    const [message, setMessage] = useState("");
 
     const onInputChange = ({ target }) => {
         setSourceAmount(target.value);
@@ -36,12 +34,12 @@ const Form = () => {
 
     const onSourceCurrencyChange = ({ target }) => {
         setSourceCurrency(target.value);
-        setSourceCurrencyRate(ratesData.rates[sourceCurrency]);
+        setSourceCurrencyRate(ratesData.rates[target.value]);
     };
 
     const onTargetCurrencyChange = ({ target }) => {
         setTargetCurrency(target.value);
-        setTargetCurrencyRate(ratesData.rates[targetCurrency]);
+        setTargetCurrencyRate(ratesData.rates[target.value]);
     };
 
     const createMessage = () => {
