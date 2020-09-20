@@ -34,7 +34,7 @@ export const useRatesData = () => {
 
         };
 
-        setTimeout(fetchRates, 2000);
+        setTimeout(fetchRates, 1000);
 
     }, [])
 

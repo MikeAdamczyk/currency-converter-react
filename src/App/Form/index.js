@@ -12,34 +12,26 @@ import { useRatesData } from "./useRatesData";
 const Form = () => {
 
     const ratesData = useRatesData();
-    const [sourceAmount, setSourceAmount] = useState("");
 
+    const [sourceAmount, setSourceAmount] = useState("");
     const [sourceCurrency, setSourceCurrency] = useState("PLN");
     const [targetCurrency, setTargetCurrency] = useState("USD");
-
-    const [sourceCurrencyRate, setSourceCurrencyRate] = useState(0);
-    const [targetCurrencyRate, setTargetCurrencyRate] = useState(0);
+    const [message, setMessage] = useState("");
 
     const targetAmount = (sourceAmount) === ""
         ? ""
-        : (sourceAmount / sourceCurrencyRate * targetCurrencyRate).toFixed(2);
-
-    const [message, setMessage] = useState("");
+        : (sourceAmount / ratesData.rates[sourceCurrency] * ratesData.rates[targetCurrency]).toFixed(2);
 
     const onInputChange = ({ target }) => {
         setSourceAmount(target.value);
-        setSourceCurrencyRate(ratesData.rates[sourceCurrency]);
-        setTargetCurrencyRate(ratesData.rates[targetCurrency]);
     };
 
     const onSourceCurrencyChange = ({ target }) => {
         setSourceCurrency(target.value);
-        setSourceCurrencyRate(ratesData.rates[target.value]);
     };
 
     const onTargetCurrencyChange = ({ target }) => {
         setTargetCurrency(target.value);
-        setTargetCurrencyRate(ratesData.rates[target.value]);
     };
 
     const createMessage = () => {
